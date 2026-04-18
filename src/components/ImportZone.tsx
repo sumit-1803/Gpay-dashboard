@@ -103,8 +103,12 @@ export default function ImportZone({ onImportComplete }: { onImportComplete: () 
                 const isFailed = failureKeywords.test(text);
 
                 // Deterministic ID generation for accurate merging across imports
+                // Safely handle Unicode characters (like \u202f narrow no-break space) for btoa()
                 const txIdBase = `${time}_${amountValue}_${description.substring(0, 10)}`;
-                const transactionId = btoa(txIdBase).substring(0, 20);
+                const safeTxIdBase = encodeURIComponent(txIdBase).replace(/%([0-9A-F]{2})/g, (_, p1) => 
+                    String.fromCharCode(parseInt(p1, 16))
+                );
+                const transactionId = btoa(safeTxIdBase).substring(0, 20);
 
                 extractedTransactions.push({
                     time,
