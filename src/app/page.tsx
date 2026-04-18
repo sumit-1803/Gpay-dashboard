@@ -325,7 +325,7 @@ export default function Dashboard() {
               <PieChartIcon className="w-8 h-8 mr-5 text-blue-400" />
               Service Density
             </h3>
-            <div className="h-[450px]">
+            <div style={{ height: 450, width: '100%' }}>
               <SpendingPieChart data={dashboardData?.chartData || []} />
             </div>
           </div>
@@ -335,7 +335,7 @@ export default function Dashboard() {
               <TrendingUp className="w-8 h-8 mr-5 text-emerald-400" />
               Spending Velocity
             </h3>
-            <div className="h-[450px]">
+            <div style={{ height: 450, width: '100%' }}>
               <MonthlyTrendChart transactions={dashboardData?.transactions || []} />
             </div>
           </div>
@@ -421,8 +421,8 @@ export default function Dashboard() {
                       <button
                         onClick={() => toggleTransactionStatus(t.transactionId)}
                         className={`flex justify-center items-center gap-3 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl border transition-all hover:scale-105 active:scale-95 w-32 ${(t.manualStatus === 'Failed' || /failed|cancelled|declined|rejected/i.test(t.description || ''))
-                            ? 'text-rose-400 border-rose-400/20 bg-rose-400/5'
-                            : 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5'
+                          ? 'text-rose-400 border-rose-400/20 bg-rose-400/5'
+                          : 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5'
                           }`}
                       >
                         <div className={`w-2 h-2 rounded-full ${(t.manualStatus === 'Failed' || /failed|cancelled|declined|rejected/i.test(t.description || '')) ? 'bg-rose-400' : 'bg-emerald-400'
